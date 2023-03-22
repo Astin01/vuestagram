@@ -9,7 +9,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerView />
+  <ContainerView :userData="userData" />
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -21,9 +21,14 @@
 
 <script>
 import ContainerView from './components/ContainerView.vue';
-
+import userData from './data';
 export default {
   name: 'App',
+  data(){
+    return{
+      userData : userData
+    }
+  },
   components: {
     ContainerView
   }
