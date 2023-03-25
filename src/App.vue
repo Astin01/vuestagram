@@ -1,5 +1,5 @@
 <template>
-<div class="header">
+  <div class="header">
     <ul class="header-button-left">
       <li>Cancel</li>
     </ul>
@@ -10,29 +10,44 @@
   </div>
 
   <ContainerView :userData="userData" />
-
+  <button @click="more">more</button>
   <div class="footer">
     <ul class="footer-button-plus">
       <input type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
- </div>
+  </div>
 </template>
 
 <script>
-import ContainerView from './components/ContainerView.vue';
-import userData from './data';
+import ContainerView from "./components/ContainerView.vue";
+import userData from "./data";
+import axios from "axios";
 export default {
-  name: 'App',
-  data(){
-    return{
-      userData : userData
-    }
+  name: "App",
+  data() {
+    return {
+      userData: userData,
+      ckbutton: 0,
+    };
   },
   components: {
-    ContainerView
-  }
-}
+    ContainerView,
+  },
+  methods: {
+    more() {
+      if (this.ckbutton < 2) {
+        axios
+          .get(`https://codingapple1.github.io/vue/more${this.ckbutton}.json`)
+          .then((result) => {
+            this.userData.push(result.data);
+          })
+          .catch(() => {});
+        this.ckbutton += 1;
+      }
+    },
+  },
+};
 </script>
 
 <style>
