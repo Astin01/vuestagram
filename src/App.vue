@@ -13,7 +13,7 @@
   <button @click="more">more</button>
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
@@ -45,6 +45,11 @@ export default {
           .catch(() => {});
         this.ckbutton += 1;
       }
+    },
+    upload(e) {
+      let file = e.target.files;
+      let url = URL.createObjectURL(file[0]);
+      this.step++;
     },
   },
 };
