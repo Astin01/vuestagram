@@ -6,11 +6,11 @@
     <ul class="header-button-right">
       <li>Next</li>
     </ul>
-    <img src="./assets/logo.png" class="logo" />
+    <img src="./assets/logo.png" class="logo" @click="stepState" />
   </div>
 
-  <ContainerView :userData="userData" />
-  <button @click="more">more</button>
+  <ContainerView :userData="userData" :step="step" />
+
   <div class="footer">
     <ul class="footer-button-plus">
       <input @change="upload" type="file" id="file" class="inputfile" />
@@ -24,6 +24,29 @@ import ContainerView from "./components/ContainerView.vue";
 import userData from "./data";
 import axios from "axios";
 export default {
+<<<<<<< HEAD
+  name: 'App',
+  data(){
+    return{
+      userData : userData,
+      step:0,
+    }
+  },
+  components: {
+    ContainerView
+  },
+  methods:{
+    stepState(){
+      if(this.step<2){
+        this.step+=1;
+      }
+      else{
+        this.step=0;
+      }
+    }
+  }
+}
+=======
   name: "App",
   data() {
     return {
@@ -53,6 +76,7 @@ export default {
     },
   },
 };
+>>>>>>> c146d4c72ed69ffc499075bfc224272043399970
 </script>
 
 <style>

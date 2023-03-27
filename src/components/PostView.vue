@@ -17,7 +17,7 @@
 export default {
   name:"PostView",
   props:{
-    userData:Object
+    userData:Object,
   }
 }
 </script>
