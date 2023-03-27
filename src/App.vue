@@ -9,11 +9,17 @@
     <img src="./assets/logo.png" class="logo" @click="stepState" />
   </div>
 
-  <ContainerView :userData="userData" :step="step" />
+  <ContainerView :userData="userData" :step="step" :imageUrl="imageUrl" />
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input @change="upload" type="file" id="file" class="inputfile" />
+      <input
+        @change="uploadImg"
+        multiple
+        type="file"
+        id="file"
+        class="inputfile"
+      />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
@@ -22,61 +28,36 @@
 <script>
 import ContainerView from "./components/ContainerView.vue";
 import userData from "./data";
-import axios from "axios";
+
 export default {
-<<<<<<< HEAD
-  name: 'App',
-  data(){
-    return{
-      userData : userData,
-      step:0,
-    }
-  },
-  components: {
-    ContainerView
-  },
-  methods:{
-    stepState(){
-      if(this.step<2){
-        this.step+=1;
-      }
-      else{
-        this.step=0;
-      }
-    }
-  }
-}
-=======
   name: "App",
   data() {
     return {
       userData: userData,
-      ckbutton: 0,
+      step: 0,
+      imageUrl: {},
     };
   },
   components: {
     ContainerView,
   },
   methods: {
-    more() {
-      if (this.ckbutton < 2) {
-        axios
-          .get(`https://codingapple1.github.io/vue/more${this.ckbutton}.json`)
-          .then((result) => {
-            this.userData.push(result.data);
-          })
-          .catch(() => {});
-        this.ckbutton += 1;
+    stepState() {
+      if (this.step < 2) {
+        this.step += 1;
+      } else {
+        this.step = 0;
       }
     },
-    upload(e) {
+    uploadImg(e) {
       let file = e.target.files;
       let url = URL.createObjectURL(file[0]);
+      this.imageUrl = url;
+      console.log(this.imageUrl);
       this.step++;
     },
   },
 };
->>>>>>> c146d4c72ed69ffc499075bfc224272043399970
 </script>
 
 <style>
