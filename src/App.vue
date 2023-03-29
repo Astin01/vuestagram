@@ -4,12 +4,13 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step == 1" @click="step++">Next</li>
+      <li v-if="step == 2" @click="publish()">Publish</li>
     </ul>
     <img src="./assets/logo.png" class="logo" @click="stepState" />
   </div>
 
-  <ContainerView :userData="userData" :step="step" :imageUrl="imageUrl" />
+  <ContainerView @text="textData=$event" :userData="userData" :step="step" :imageUrl="imageUrl" />
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -36,12 +37,27 @@ export default {
       userData: userData,
       step: 0,
       imageUrl: {},
+      textData:"",
     };
   },
   components: {
     ContainerView,
   },
   methods: {
+    publish(){
+      var mine = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.imageUrl,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.textData,
+        filter: "perpetua"
+      };
+      this.userData.unshift(mine);
+      this.step = 0;
+    },
     stepState() {
       if (this.step < 2) {
         this.step += 1;
@@ -53,7 +69,6 @@ export default {
       let file = e.target.files;
       let url = URL.createObjectURL(file[0]);
       this.imageUrl = url;
-      console.log(this.imageUrl);
       this.step++;
     },
   },

@@ -21,13 +21,14 @@
   <div v-if="step == 2">
     <div class="upload-image"></div>
     <div class="write">
-      <textarea class="write-box">write!</textarea>
+      <textarea @input="$emit('text',$event.target.value)" class="write-box">Write</textarea>
     </div>
   </div>
 </template>
 
 <script>
 import PostView from "./PostView.vue";
+
 export default {
   name: "ContainerView",
   components: {
