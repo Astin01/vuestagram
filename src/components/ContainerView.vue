@@ -10,11 +10,7 @@
       :style="{ backgroundImage: `url(${imageUrl})` }"
     ></div>
     <div class="filters">
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
+      <filter-box :image="imageUrl" :filterList="filterList" v-for="a in filterList" :key="a"></filter-box>
     </div>
   </div>
   <!-- 글작성페이지 -->
@@ -28,11 +24,19 @@
 
 <script>
 import PostView from "./PostView.vue";
-
+import FilterBox from "./FilterBox.vue";
 export default {
   name: "ContainerView",
+  data(){
+    return{
+      filterList:[ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+      "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+      "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
+    }
+  },
   components: {
     PostView,
+    FilterBox,
   },
   props: {
     userData: Array,
