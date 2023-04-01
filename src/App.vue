@@ -5,12 +5,21 @@
     </ul>
     <ul class="header-button-right">
       <li v-if="step == 1" @click="step++">Next</li>
+      <<<<<<< HEAD
       <li v-if="step == 2" @click="publish()">발행</li>
+      =======
+      <li v-if="step == 2" @click="publish()">Publish</li>
+      >>>>>>> 84b7a7894c787c56c8bde97964f4679a43855350
     </ul>
     <img src="./assets/logo.png" class="logo" @click="stepState" />
   </div>
 
-  <ContainerView :userData="userData" :step="step" :imageUrl="imageUrl" />
+  <ContainerView
+    @text="textData = $event"
+    :userData="userData"
+    :step="step"
+    :imageUrl="imageUrl"
+  />
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -36,7 +45,8 @@ export default {
     return {
       userData: userData,
       step: 0,
-      imageUrl: "",
+      imageUrl: {},
+      textData: "",
     };
   },
   components: {
@@ -44,17 +54,17 @@ export default {
   },
   methods: {
     publish() {
-      var myList = {
+      var mine = {
         name: "Kim Hyun",
         userImage: "https://placeimg.com/100/100/arch",
-        postImage: "",
+        postImage: this.imageUrl,
         likes: 36,
         date: "May 15",
         liked: false,
-        content: "내가입력한글",
+        content: this.textData,
         filter: "perpetua",
       };
-      this.userData.unshift(myList);
+      this.userData.unshift(mine);
       this.step = 0;
     },
     stepState() {
