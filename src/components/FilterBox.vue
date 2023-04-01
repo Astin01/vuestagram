@@ -1,15 +1,20 @@
 <template>
-  <div v-for="a in filterList" :key="a"  :class="[`filter-item ${a}`]" :style="`background-image:url(${image})`"></div> 
+  <div
+    :class="[`filter-item ${filter}`]"
+    :style="`background-image:url(${image})`"
+  >
+    <slot></slot>
+  </div>
 </template>
 
 <script>
 export default {
-    name:'FilterBox',
-    props:{
-        image :String,
-        filterList:Array,
-    }
-}
+  name: "FilterBox",
+  props: {
+    image: String,
+    filter: String,
+  },
+};
 </script>
 
 <style>
@@ -19,8 +24,8 @@ export default {
   margin: 10px 10px 10px auto;
   padding: 8px;
   display: inline-block;
-  color : white;
+  color: white;
   background-size: cover;
-  background-position : center;
+  background-position: center;
 }
 </style>

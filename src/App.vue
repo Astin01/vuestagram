@@ -5,11 +5,7 @@
     </ul>
     <ul class="header-button-right">
       <li v-if="step == 1" @click="step++">Next</li>
-      <<<<<<< HEAD
-      <li v-if="step == 2" @click="publish()">발행</li>
-      =======
       <li v-if="step == 2" @click="publish()">Publish</li>
-      >>>>>>> 84b7a7894c787c56c8bde97964f4679a43855350
     </ul>
     <img src="./assets/logo.png" class="logo" @click="stepState" />
   </div>
@@ -45,7 +41,7 @@ export default {
     return {
       userData: userData,
       step: 0,
-      imageUrl: {},
+      imageUrl: "",
       textData: "",
     };
   },

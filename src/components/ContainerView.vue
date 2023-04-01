@@ -7,17 +7,30 @@
   <div v-if="step == 1">
     <div
       class="upload-image"
-      :style="`backgroundImage: url(${imageUrl}) `"
+      :style="`background-image: url(${imageUrl}) `"
     ></div>
     <div class="filters">
-      <filter-box :image="imageUrl" :filterList="filterList" v-for="a in filterList" :key="a"></filter-box>
+      <filter-box
+        :image="imageUrl"
+        :filter="filter"
+        v-for="filter in filterList"
+        :key="filter"
+      >
+        {{ filter }}
+      </filter-box>
     </div>
   </div>
   <!-- 글작성페이지 -->
   <div v-if="step == 2">
-    <div class="upload-image"></div>
+    <div
+      class="upload-image"
+      :class="[`filter-item ${filter}`]"
+      :style="`background-image:url(${image})`"
+    ></div>
     <div class="write">
-      <textarea @input="$emit('text',$event.target.value)" class="write-box">Write</textarea>
+      <textarea @input="$emit('text', $event.target.value)" class="write-box">
+Write</textarea
+      >
     </div>
   </div>
 </template>
@@ -27,12 +40,37 @@ import PostView from "./PostView.vue";
 import FilterBox from "./FilterBox.vue";
 export default {
   name: "ContainerView",
-  data(){
-    return{
-      filterList:[ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
-      "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
-      "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
-    }
+  data() {
+    return {
+      filterList: [
+        "aden",
+        "_1977",
+        "brannan",
+        "brooklyn",
+        "clarendon",
+        "earlybird",
+        "gingham",
+        "hudson",
+        "inkwell",
+        "kelvin",
+        "lark",
+        "lofi",
+        "maven",
+        "mayfair",
+        "moon",
+        "nashville",
+        "perpetua",
+        "reyes",
+        "rise",
+        "slumber",
+        "stinson",
+        "toaster",
+        "valencia",
+        "walden",
+        "willow",
+        "xpro2",
+      ],
+    };
   },
   components: {
     PostView,
