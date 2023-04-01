@@ -4,7 +4,8 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step == 1" @click="step++">Next</li>
+      <li v-if="step == 2" @click="publish()">발행</li>
     </ul>
     <img src="./assets/logo.png" class="logo" @click="stepState" />
   </div>
@@ -35,13 +36,27 @@ export default {
     return {
       userData: userData,
       step: 0,
-      imageUrl: {},
+      imageUrl: "",
     };
   },
   components: {
     ContainerView,
   },
   methods: {
+    publish() {
+      var myList = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: "",
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: "내가입력한글",
+        filter: "perpetua",
+      };
+      this.userData.unshift(myList);
+      this.step = 0;
+    },
     stepState() {
       if (this.step < 2) {
         this.step += 1;
@@ -53,7 +68,6 @@ export default {
       let file = e.target.files;
       let url = URL.createObjectURL(file[0]);
       this.imageUrl = url;
-      console.log(this.imageUrl);
       this.step++;
     },
   },

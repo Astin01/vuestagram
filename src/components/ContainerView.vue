@@ -7,7 +7,7 @@
   <div v-if="step == 1">
     <div
       class="upload-image"
-      :style="{ backgroundImage: `url(${imageUrl})` }"
+      :style="`backgroundImage: url(${imageUrl}) `"
     ></div>
     <div class="filters">
       <div class="filter-1"></div>
@@ -36,7 +36,7 @@ export default {
   props: {
     userData: Array,
     step: Number,
-    imageUrl: Object,
+    imageUrl: String,
   },
 };
 </script>
