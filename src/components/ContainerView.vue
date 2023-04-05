@@ -7,6 +7,7 @@
   <div v-if="step == 1">
     <div
       class="upload-image"
+      :class="[`filter-item ${filterData}`]"
       :style="`background-image: url(${imageUrl}) `"
     ></div>
     <div class="filters">
@@ -24,8 +25,8 @@
   <div v-if="step == 2">
     <div
       class="upload-image"
-      :class="[`filter-item ${filter}`]"
-      :style="`background-image:url(${image})`"
+      :class="[`filter-item ${filterData}`]"
+      :style="`background-image:url(${imageUrl})`"
     ></div>
     <div class="write">
       <textarea @input="$emit('text', $event.target.value)" class="write-box">
@@ -80,6 +81,7 @@ export default {
     userData: Array,
     step: Number,
     imageUrl: String,
+    filterData: String,
   },
 };
 </script>

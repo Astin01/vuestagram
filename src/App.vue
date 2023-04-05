@@ -15,6 +15,7 @@
     :userData="userData"
     :step="step"
     :imageUrl="imageUrl"
+    :filterData="filterData"
   />
 
   <div class="footer">
@@ -43,6 +44,7 @@ export default {
       step: 0,
       imageUrl: "",
       textData: "",
+      filterData: "",
     };
   },
   components: {
@@ -58,7 +60,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.textData,
-        filter: "perpetua",
+        filter: this.filterData,
       };
       this.userData.unshift(mine);
       this.step = 0;
@@ -76,6 +78,11 @@ export default {
       this.imageUrl = url;
       this.step++;
     },
+  },
+  mounted() {
+    this.emitter.on("filterOption", (data) => {
+      this.filterData = data;
+    });
   },
 };
 </script>

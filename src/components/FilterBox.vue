@@ -4,12 +4,18 @@
     :style="`background-image:url(${image})`"
   >
     <slot></slot>
+    <button @click="fire">변경</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "FilterBox",
+  methods: {
+    fire() {
+      this.emitter.emit("filterOption", this.filter);
+    },
+  },
   props: {
     image: String,
     filter: String,

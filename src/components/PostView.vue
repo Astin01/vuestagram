@@ -1,25 +1,34 @@
 <template>
   <div class="post">
     <div class="post-header">
-      <div class="profile" :style="{backgroundImage:`url(${userData.userImage})`}"></div>
-      <span class="profile-name">{{userData.name}}</span>
+      <div
+        class="profile"
+        :style="{ backgroundImage: `url(${userData.userImage})` }"
+      ></div>
+      <span class="profile-name">{{ userData.name }}</span>
     </div>
-    <div class="post-body" :style="{backgroundImage:`url(${userData.postImage})`}"></div>
+    <div
+      :class="userData.filter"
+      class="post-body"
+      :style="{ backgroundImage: `url(${userData.postImage})` }"
+    ></div>
     <div class="post-content">
-      <p>{{userData.likes}}</p>
-      <p><strong>{{userData.name}}</strong> {{userData.content}}</p>
-      <p class="date">{{userData.date}}</p>
+      <p>{{ userData.likes }}</p>
+      <p>
+        <strong>{{ userData.name }}</strong> {{ userData.content }}
+      </p>
+      <p class="date">{{ userData.date }}</p>
     </div>
-</div> 
+  </div>
 </template>
 
 <script>
 export default {
-  name:"PostView",
-  props:{
-    userData:Object,
-  }
-}
+  name: "PostView",
+  props: {
+    userData: Object,
+  },
+};
 </script>
 
 <style>
@@ -60,5 +69,5 @@ export default {
   font-size: 11px;
   color: grey;
   margin-top: -8px;
-} 
+}
 </style>
