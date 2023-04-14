@@ -8,6 +8,7 @@
       <span class="profile-name">{{ userData.name }}</span>
     </div>
     <div
+      @click="changelikes"
       :class="userData.filter"
       class="post-body"
       :style="{ backgroundImage: `url(${userData.postImage})` }"
@@ -27,6 +28,23 @@ export default {
   name: "PostView",
   props: {
     userData: Object,
+    postnum: Number,
+  },
+  data() {
+    return {
+      click: 0,
+    };
+  },
+  methods: {
+    changelikes() {
+      if (this.click == 0) {
+        this.$store.commit("Pluslikes", this.postnum);
+        this.click++;
+      } else {
+        this.$store.commit("Minuslikes", this.postnum);
+        this.click = 0;
+      }
+    },
   },
 };
 </script>

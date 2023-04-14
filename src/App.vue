@@ -9,7 +9,6 @@
     </ul>
     <img src="./assets/logo.png" class="logo" @click="stepState" />
   </div>
-
   <ContainerView
     @text="textData = $event"
     :userData="userData"
@@ -34,13 +33,12 @@
 
 <script>
 import ContainerView from "./components/ContainerView.vue";
-import userData from "./data";
 
 export default {
   name: "App",
   data() {
     return {
-      userData: userData,
+      userData: this.$store.state.userData,
       step: 0,
       imageUrl: "",
       textData: "",

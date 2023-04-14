@@ -1,6 +1,6 @@
 <template>
   <div v-if="step == 0">
-    <PostView :userData="a" v-for="(a, i) in userData" :key="i" />
+    <PostView :userData="a" :postnum="i" v-for="(a, i) in userData" :key="i" />
   </div>
 
   <!-- 필터선택페이지 -->
